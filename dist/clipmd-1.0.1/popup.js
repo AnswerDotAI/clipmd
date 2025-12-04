@@ -1,0 +1,4 @@
+const statusEl=document.getElementById("status");
+const done=msg=>{statusEl.textContent=msg;setTimeout(()=>window.close(),400);};
+const focusWin=()=>document.hasFocus()?Promise.resolve():new Promise(r=>{window.addEventListener("focus",r,{once:true});window.focus();setTimeout(r,120);});
+(async()=>{try{await focusWin();const items=await navigator.clipboard.read();const htmlItem=items.find(i=>i.types.includes("text/html"));let html;if(htmlItem){html=await (await htmlItem.getType("text/html")).text();}else{const text=await navigator.clipboard.readText();if(!text){statusEl.textContent="No HTML or text on clipboard.";return;}html=text;}const td=new TurndownService({codeBlockStyle:"fenced"});await navigator.clipboard.writeText(td.turndown(html));done("Markdown copied.");}catch(err){console.error(err);statusEl.textContent="Clipboard access failed.";}})();

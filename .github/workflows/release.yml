@@ -1,0 +1,40 @@
+name: Build Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump type
+        required: true
+        default: patch
+        type: choice
+        options: [patch, minor, major]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build artifacts
+        env:
+          BUMP: ${{ github.event.inputs.bump }}
+        run: ./scripts/build.sh
+      - name: Capture version
+        id: meta
+        run: echo "version=$(cat dist/version.txt)" >> "$GITHUB_OUTPUT"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: clipmd-${{ steps.meta.outputs.version }}
+          path: |
+            dist/clipmd-${{ steps.meta.outputs.version }}.zip
+          if-no-files-found: warn
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.meta.outputs.version }}
+          name: ClipMD v${{ steps.meta.outputs.version }}
+          files: |
+            dist/clipmd-${{ steps.meta.outputs.version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
