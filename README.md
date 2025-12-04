@@ -4,7 +4,8 @@ Converts HTML in your clipboard to Markdown (fenced code blocks) using [Turndown
 
 ## Install
 
-- In Chrome, open `chrome://extensions`, enable Developer Mode, click **Load unpacked**, and select this folder.
+- Grab the .zip from `dist/`, and unzip it
+- Then in Chrome, open `chrome://extensions`, enable Developer Mode, click **Load unpacked**, and select the unzipped folder.
 
 ## Use
 
