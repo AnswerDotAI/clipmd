@@ -4,7 +4,7 @@ Converts HTML in your clipboard to Markdown (fenced code blocks) using [Turndown
 
 ## Install
 
-- Grab the .zip from `dist/`, and unzip it
+- Grab the [.zip from `dist/`](https://github.com/AnswerDotAI/clipmd/raw/refs/heads/main/dist/clipmd-1.0.1.zip), and unzip it
 - Then in Chrome, open `chrome://extensions`, enable Developer Mode, click **Load unpacked**, and select the unzipped folder.
 
 ## Use
