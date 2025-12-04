@@ -21,3 +21,7 @@ Converts HTML in your clipboard to Markdown (fenced code blocks) using [Turndown
 
 - Run `./scripts/build.sh` to bump the version (default: patch), stage assets in `dist/`, and produce a ZIP. If Chrome/Chromium is available locally, it also creates a CRX (set `KEY_PATH` to reuse a signing key).
 - GitHub Actions workflow `Build Release` (`workflow_dispatch`) builds the ZIP and publishes a tagged release; CRX creation is local-only.
+
+## Credits
+
+`turndown.js` is from [Turndown](https://github.com/mixmark-io/turndown) and is Copyright (c) 2017 Dom Christie under the MIT license.
