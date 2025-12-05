@@ -26,12 +26,6 @@ On macOS these use `Control` (not Command).
 - `activeTab`, `tabs`, `scripting` to target the current page and run clipboard writes in-page.
 - Turndown is bundled locally (`turndown.js`).
 
-## Packaging
-
-- Run `./scripts/build.py` to bump the version (default: patch), stage assets into `dist/clipmd`, and produce `dist/clipmd.zip`. If Chrome/Chromium is available locally, it also creates `dist/clipmd.crx` (set `KEY_PATH` to reuse a signing key).
-- If `GITHUB_TOKEN` is set and `ghapi` is installed, the script will create/update a GitHub release (tag `v<version>`) and upload the ZIP/CRX. Set `GITHUB_REPOSITORY` (owner/repo) if not running in GitHub Actions.
-- GitHub Actions workflow `Build Release` (`workflow_dispatch`) builds the ZIP and publishes a tagged release; CRX creation is local-only.
-
 ## Credits
 
 `turndown.js` is from [Turndown](https://github.com/mixmark-io/turndown) and is Copyright (c) 2017 Dom Christie under the MIT license.
