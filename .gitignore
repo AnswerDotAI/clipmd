@@ -1,0 +1,10 @@
+dist/clipmd/
+*.swp
+site_libs/
+.DS_Store
+_site/
+.quarto/
+
+/.quarto/
+
+**/*.quarto_ipynb

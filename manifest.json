@@ -1,24 +1,37 @@
 {
   "manifest_version": 3,
   "name": "Clipboard to Markdown",
-  "version": "1.0.1",
-  "description": "Convert HTML in the clipboard to fenced-code-block Markdown via Turndown.",
+  "version": "1.1.4",
+  "description": "Pick an element, convert its HTML to Markdown or capture it as an image.",
   "permissions": [
-    "clipboardRead",
+    "debugger",
+    "offscreen",
     "clipboardWrite",
-    "activeTab"
+    "clipboardRead",
+    "activeTab",
+    "tabs",
+    "scripting"
   ],
   "action": {
-    "default_title": "Clip to Markdown",
-    "default_popup": "popup.html"
+    "default_title": "Clip to Markdown"
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "commands": {
     "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+M",
-        "mac": "Ctrl+Shift+M"
+        "mac": "MacCtrl+Shift+M"
       },
-      "description": "Convert clipboard HTML to Markdown"
+      "description": "Select element and copy Markdown"
+    },
+    "clipmd-screenshot": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "MacCtrl+Shift+S"
+      },
+      "description": "Select element and copy screenshot"
     }
   },
   "icons": {
