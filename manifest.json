@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Clipboard to Markdown",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Pick an element, convert its HTML to Markdown or capture it as an image.",
   "permissions": [
     "debugger",
@@ -32,6 +32,13 @@
         "mac": "MacCtrl+Shift+S"
       },
       "description": "Select element and copy screenshot"
+    },
+    "clipmd-html": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "MacCtrl+Shift+H"
+      },
+      "description": "Select element and copy HTML + screenshot"
     }
   },
   "icons": {
