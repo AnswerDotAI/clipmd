@@ -80,10 +80,35 @@ const writeTextToTab = async (tabId, text) => {
   });
 };
 
-const writeImageToTab = async (tabId, data) => {
+const captureAndCrop = async (debuggee, backendNodeId) => {
+  const { model } = await send(debuggee, "DOM.getBoxModel", { backendNodeId });
+  const { cssLayoutViewport: vp } = await send(debuggee, "Page.getLayoutMetrics");
+  const pts = model.border;
+  const x = Math.min(pts[0], pts[2], pts[4], pts[6]);
+  const y = Math.min(pts[1], pts[3], pts[5], pts[7]);
+  const width = Math.max(pts[0], pts[2], pts[4], pts[6]) - x;
+  const height = Math.max(pts[1], pts[3], pts[5], pts[7]) - y;
+  const { data } = await send(debuggee, "Page.captureScreenshot", { format: "png" });
+  const res = await fetch(`data:image/png;base64,${data}`);
+  const img = await createImageBitmap(await res.blob());
+  const sx = img.width / vp.clientWidth, sy = img.height / vp.clientHeight;
+  const canvas = new OffscreenCanvas(width * sx, height * sy);
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, x * sx, y * sy, width * sx, height * sy, 0, 0, width * sx, height * sy);
+  return await canvas.convertToBlob({ type: 'image/png' });
+};
+
+const blobToBase64 = blob => new Promise(resolve => {
+  const reader = new FileReader();
+  reader.onload = () => resolve(reader.result.split(',')[1]);
+  reader.readAsDataURL(blob);
+});
+
+const writeBlobToTab = async (tabId, blob) => {
+  const b64 = await blobToBase64(blob);
   await chrome.scripting.executeScript({
     target: { tabId },
-    args: [data],
+    args: [b64],
     func: async b64 => {
       const res = await fetch(`data:image/png;base64,${b64}`);
       const blob = await res.blob();
@@ -92,36 +117,18 @@ const writeImageToTab = async (tabId, data) => {
   });
 };
 
-const writeHtmlAndImageToTab = async (tabId, html, imgData) => {
+const writeHtmlAndBlobToTab = async (tabId, html, blob) => {
+  const b64 = await blobToBase64(blob);
   await chrome.scripting.executeScript({
     target: { tabId },
-    args: [html, imgData],
+    args: [html, b64],
     func: async (htmlContent, b64) => {
       const res = await fetch(`data:image/png;base64,${b64}`);
       const imgBlob = await res.blob();
       const htmlBlob = new Blob([htmlContent], { type: "text/html" });
-      await navigator.clipboard.write([new ClipboardItem({
-        "text/html": htmlBlob,
-        "image/png": imgBlob
-      })]);
+      await navigator.clipboard.write([new ClipboardItem({ "text/html": htmlBlob, "image/png": imgBlob })]);
     }
   });
-};
-
-const captureScreenshot = async (debuggee, backendNodeId) => {
-  const { model } = await send(debuggee, "DOM.getBoxModel", { backendNodeId });
-  const pts = model.content;
-  const xs = [pts[0], pts[2], pts[4], pts[6]];
-  const ys = [pts[1], pts[3], pts[5], pts[7]];
-  const clip = {
-    x: Math.min(...xs),
-    y: Math.min(...ys),
-    width: Math.max(...xs) - Math.min(...xs),
-    height: Math.max(...ys) - Math.min(...ys),
-    scale: 1
-  };
-  const { data } = await send(debuggee, "Page.captureScreenshot", { format: "png", clip });
-  return data;
 };
 
 const handleNode = async (session, backendNodeId) => {
@@ -133,12 +140,12 @@ const handleNode = async (session, backendNodeId) => {
       if (!res?.ok) throw new Error(res?.error || "Markdown conversion failed");
       await writeTextToTab(debuggee.tabId, res.markdown);
     } else if (mode === "screenshot") {
-      const data = await captureScreenshot(debuggee, backendNodeId);
-      await writeImageToTab(debuggee.tabId, data);
+      const blob = await captureAndCrop(debuggee, backendNodeId);
+      await writeBlobToTab(debuggee.tabId, blob);
     } else if (mode === "html") {
       const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });
-      const data = await captureScreenshot(debuggee, backendNodeId);
-      await writeHtmlAndImageToTab(debuggee.tabId, outerHTML, data);
+      const blob = await captureAndCrop(debuggee, backendNodeId);
+      await writeHtmlAndBlobToTab(debuggee.tabId, outerHTML, blob);
     }
   } catch (err) {
     console.error(err);

@@ -91,7 +91,6 @@ Install	README.md	/^## Install$/;"	s	chapter:Clipboard to Markdown (Chrome Exten
 Node	turndown.js	/^  function Node (node, options) {$/;"	c	class:TurndownService
 OFFSCREEN_URL	background.js	/^const OFFSCREEN_URL = "offscreen.html";$/;"	C
 PROTOCOL_VERSION	background.js	/^const PROTOCOL_VERSION = "1.3";$/;"	C
-Packaging	README.md	/^## Packaging$/;"	s	chapter:Clipboard to Markdown (Chrome Extension)
 Parser	turndown.js	/^        Parser.prototype.parseFromString = function (string) {$/;"	c
 Parser	turndown.js	/^    var Parser = function () {};$/;"	c	function:TurndownService.createHTMLParser
 Permissions	README.md	/^## Permissions$/;"	s	chapter:Clipboard to Markdown (Chrome Extension)
@@ -107,7 +106,7 @@ _remove	turndown.js	/^    this._remove = [];$/;"	p	class:TurndownService.Rules
 a	background.js	/^  borderColor: { r: 111, g: 168, b: 220, a: 0.9 },$/;"	p	property:highlightConfig.borderColor
 a	background.js	/^  contentColor: { r: 111, g: 168, b: 220, a: 0.35 },$/;"	p	property:highlightConfig.contentColor
 action	manifest.json	/^  "action": {$/;"	o
-active	background.js	/^  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });$/;"	p	variable:getActiveTab.anonymousObject2ba477300c05
+active	background.js	/^  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });$/;"	p	variable:getActiveTab.anonymousObject2ba477301005
 add	turndown.js	/^    add: function (key, rule) {$/;"	m	class:Rules
 addRule	turndown.js	/^    addRule: function (key, rule) {$/;"	m	class:TurndownService
 anonymousFunctionb346e9310200	turndown.js	/^      tagNames.some(function (tagName) {$/;"	f
@@ -121,11 +120,15 @@ anonymousObject2ba477300405	background.js	/^    await send(debuggee, "Overlay.se
 anonymousObject2ba477300505	background.js	/^  await chrome.scripting.executeScript({$/;"	v
 anonymousObject2ba477300605	background.js	/^  await chrome.scripting.executeScript({$/;"	v
 anonymousObject2ba477300705	background.js	/^      await navigator.clipboard.write([new ClipboardItem({ "image\/png": blob })]);$/;"	v
-anonymousObject2ba477300805	background.js	/^      const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });$/;"	v	function:handleNode
-anonymousObject2ba477300905	background.js	/^      const res = await sendToOffscreen({ type: "convertMarkdown", html: outerHTML });$/;"	v	function:handleNode
-anonymousObject2ba477300a05	background.js	/^      const { model } = await send(debuggee, "DOM.getBoxModel", { backendNodeId });$/;"	v	function:handleNode
-anonymousObject2ba477300b05	background.js	/^      const { data } = await send(debuggee, "Page.captureScreenshot", { format: "png", clip });$/;"	v	function:handleNode
-anonymousObject2ba477300c05	background.js	/^  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });$/;"	v	function:getActiveTab
+anonymousObject2ba477300805	background.js	/^  await chrome.scripting.executeScript({$/;"	v
+anonymousObject2ba477300905	background.js	/^      const htmlBlob = new Blob([htmlContent], { type: "text\/html" });$/;"	v	method:anonymousObject2ba477300805.func
+anonymousObject2ba477300a05	background.js	/^      await navigator.clipboard.write([new ClipboardItem({$/;"	v
+anonymousObject2ba477300b05	background.js	/^  const { model } = await send(debuggee, "DOM.getBoxModel", { backendNodeId });$/;"	v	function:captureScreenshot
+anonymousObject2ba477300c05	background.js	/^  const { data } = await send(debuggee, "Page.captureScreenshot", {$/;"	v	function:captureScreenshot
+anonymousObject2ba477300d05	background.js	/^      const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });$/;"	v	function:handleNode
+anonymousObject2ba477300e05	background.js	/^      const res = await sendToOffscreen({ type: "convertMarkdown", html: outerHTML });$/;"	v	function:handleNode
+anonymousObject2ba477300f05	background.js	/^      const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });$/;"	v	function:handleNode
+anonymousObject2ba477301005	background.js	/^  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });$/;"	v	function:getActiveTab
 anonymousObject3d1346eb0105	offscreen.js	/^const td = new TurndownService({ codeBlockStyle: "fenced" });$/;"	v
 anonymousObject3d1346eb0205	offscreen.js	/^      sendResponse({ ok: true, markdown });$/;"	v
 anonymousObject3d1346eb0305	offscreen.js	/^      sendResponse({ ok: false, error: err.message });$/;"	v
@@ -134,12 +137,14 @@ anonymousObjectb346e9310405	turndown.js	/^      this._remove.unshift({$/;"	v
 anonymousObjectb346e9310605	turndown.js	/^    collapseWhitespace({$/;"	v	class:TurndownService.RootNode
 append	turndown.js	/^    append: function (options) {$/;"	m	property:rules.referenceLink
 args	background.js	/^    args: [data],$/;"	p	variable:anonymousObject2ba477300605
+args	background.js	/^    args: [html, imgData],$/;"	p	variable:anonymousObject2ba477300805
 args	background.js	/^    args: [text],$/;"	p	variable:anonymousObject2ba477300505
 array	turndown.js	/^    this.array = [];$/;"	p	class:TurndownService.Rules
 b	background.js	/^  borderColor: { r: 111, g: 168, b: 220, a: 0.9 },$/;"	p	property:highlightConfig.borderColor
 b	background.js	/^  contentColor: { r: 111, g: 168, b: 220, a: 0.35 },$/;"	p	property:highlightConfig.contentColor
-backendNodeId	background.js	/^      const { model } = await send(debuggee, "DOM.getBoxModel", { backendNodeId });$/;"	p	variable:handleNode.anonymousObject2ba477300a05
-backendNodeId	background.js	/^      const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });$/;"	p	variable:handleNode.anonymousObject2ba477300805
+backendNodeId	background.js	/^      const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });$/;"	p	variable:handleNode.anonymousObject2ba477300d05
+backendNodeId	background.js	/^      const { outerHTML } = await send(debuggee, "DOM.getOuterHTML", { backendNodeId });$/;"	p	variable:handleNode.anonymousObject2ba477300f05
+backendNodeId	background.js	/^  const { model } = await send(debuggee, "DOM.getBoxModel", { backendNodeId });$/;"	p	variable:captureScreenshot.anonymousObject2ba477300b05
 background	manifest.json	/^  "background": {$/;"	o
 blankReplacement	turndown.js	/^      blankReplacement: function (content, node) {$/;"	m	variable:TurndownService.TurndownService.defaults
 blankRule	turndown.js	/^    this.blankRule = {$/;"	p	class:TurndownService.Rules
@@ -149,9 +154,12 @@ bulletListMarker	turndown.js	/^      bulletListMarker: '*',$/;"	p	variable:Turnd
 bump	scripts/build.py	/^def bump(ver):$/;"	f
 canConvert	turndown.js	/^  function canConvert (input) {$/;"	f	class:TurndownService
 canParseHTMLNatively	turndown.js	/^  function canParseHTMLNatively () {$/;"	f	class:TurndownService
+captureBeyondViewport	background.js	/^    format: "png", clip, captureBeyondViewport: true$/;"	p	variable:captureScreenshot.anonymousObject2ba477300c05
+captureScreenshot	background.js	/^const captureScreenshot = async (debuggee, backendNodeId) => {$/;"	f
 cleanAttribute	turndown.js	/^  function cleanAttribute (attribute) {$/;"	f	class:TurndownService
-clip	background.js	/^      const clip = {$/;"	v	function:handleNode
-clip	background.js	/^      const { data } = await send(debuggee, "Page.captureScreenshot", { format: "png", clip });$/;"	p	variable:handleNode.anonymousObject2ba477300b05
+clip	background.js	/^    format: "png", clip, captureBeyondViewport: true$/;"	p	variable:captureScreenshot.anonymousObject2ba477300c05
+clip	background.js	/^  const clip = {$/;"	v	function:captureScreenshot
+clipmd-html	manifest.json	/^    "clipmd-html": {$/;"	o	object:commands
 clipmd-screenshot	manifest.json	/^    "clipmd-screenshot": {$/;"	o	object:commands
 codeBlockStyle	offscreen.js	/^const td = new TurndownService({ codeBlockStyle: "fenced" });$/;"	p	variable:anonymousObject3d1346eb0105
 codeBlockStyle	turndown.js	/^      codeBlockStyle: 'indented',$/;"	p	variable:TurndownService.TurndownService.defaults
@@ -160,15 +168,17 @@ commands	manifest.json	/^  "commands": {$/;"	o
 contentColor	background.js	/^  contentColor: { r: 111, g: 168, b: 220, a: 0.35 },$/;"	p	variable:highlightConfig
 createHTMLParser	turndown.js	/^  function createHTMLParser () {$/;"	f	class:TurndownService
 crx	scripts/build.py	/^def crx(dst):$/;"	f
-currentWindow	background.js	/^  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });$/;"	p	variable:getActiveTab.anonymousObject2ba477300c05
+currentWindow	background.js	/^  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });$/;"	p	variable:getActiveTab.anonymousObject2ba477301005
 debuggee	background.js	/^    sessions.set(tabId, { debuggee, mode });$/;"	p	variable:anonymousObject2ba477300305
 debuggee	background.js	/^  const debuggee = { tabId };$/;"	v	function:startSession
+default	manifest.json	/^        "default": "Ctrl+Shift+H",$/;"	s	object:commands.clipmd-html.suggested_key
 default	manifest.json	/^        "default": "Ctrl+Shift+M",$/;"	s	object:commands._execute_action.suggested_key
 default	manifest.json	/^        "default": "Ctrl+Shift+S",$/;"	s	object:commands.clipmd-screenshot.suggested_key
 defaultReplacement	turndown.js	/^      defaultReplacement: function (content, node) {$/;"	m	variable:TurndownService.TurndownService.defaults
 defaultRule	turndown.js	/^    this.defaultRule = {$/;"	p	class:TurndownService.Rules
 default_title	manifest.json	/^    "default_title": "Clip to Markdown"$/;"	s	object:action
 defaults	turndown.js	/^    var defaults = {$/;"	v	class:TurndownService.TurndownService
+description	manifest.json	/^      "description": "Select element and copy HTML + screenshot"$/;"	s	object:commands.clipmd-html
 description	manifest.json	/^      "description": "Select element and copy Markdown"$/;"	s	object:commands._execute_action
 description	manifest.json	/^      "description": "Select element and copy screenshot"$/;"	s	object:commands.clipmd-screenshot
 description	manifest.json	/^  "description": "Pick an element, convert its HTML to Markdown or capture it as an image.",$/;"	s
@@ -205,7 +215,8 @@ find_chrome	scripts/build.py	/^def find_chrome():$/;"	f
 flankingWhitespace	turndown.js	/^  function flankingWhitespace (node, options) {$/;"	f	class:TurndownService
 forEach	turndown.js	/^    forEach: function (fn) {$/;"	m	class:Rules
 forNode	turndown.js	/^    forNode: function (node) {$/;"	m	class:Rules
-format	background.js	/^      const { data } = await send(debuggee, "Page.captureScreenshot", { format: "png", clip });$/;"	p	variable:handleNode.anonymousObject2ba477300b05
+format	background.js	/^    format: "png", clip, captureBeyondViewport: true$/;"	p	variable:captureScreenshot.anonymousObject2ba477300c05
+func	background.js	/^    func: async (htmlContent, b64) => {$/;"	m	variable:anonymousObject2ba477300805
 func	background.js	/^    func: async b64 => {$/;"	m	variable:anonymousObject2ba477300605
 func	background.js	/^    func: async content => {$/;"	m	variable:anonymousObject2ba477300505
 g	background.js	/^  borderColor: { r: 111, g: 168, b: 220, a: 0.9 },$/;"	p	property:highlightConfig.borderColor
@@ -216,13 +227,14 @@ has	turndown.js	/^  function has (node, tagNames) {$/;"	f	class:TurndownService
 hasMeaningfulWhenBlank	turndown.js	/^  function hasMeaningfulWhenBlank (node) {$/;"	f	class:TurndownService
 hasVoid	turndown.js	/^  function hasVoid (node) {$/;"	f	class:TurndownService
 headingStyle	turndown.js	/^      headingStyle: 'setext',$/;"	p	variable:TurndownService.TurndownService.defaults
-height	background.js	/^        height: Math.max(...ys) - Math.min(...ys),$/;"	p	variable:handleNode.clip
+height	background.js	/^    width: Math.max(...xs) - Math.min(...xs), height: Math.max(...ys) - Math.min(...ys),$/;"	p	variable:captureScreenshot.clip
 highlightConfig	background.js	/^      highlightConfig$/;"	p	variable:startSession.anonymousObject2ba477300405
 highlightConfig	background.js	/^const highlightConfig = {$/;"	v
 hr	turndown.js	/^      hr: '* * *',$/;"	p	variable:TurndownService.TurndownService.defaults
-html	background.js	/^      const res = await sendToOffscreen({ type: "convertMarkdown", html: outerHTML });$/;"	p	variable:handleNode.anonymousObject2ba477300905
+html	background.js	/^      const res = await sendToOffscreen({ type: "convertMarkdown", html: outerHTML });$/;"	p	variable:handleNode.anonymousObject2ba477300e05
 htmlParser	turndown.js	/^  function htmlParser () {$/;"	f	class:TurndownService
 icons	manifest.json	/^  "icons": {$/;"	o
+image/png	background.js	/^        "image\/png": imgBlob$/;"	p	variable:anonymousObject2ba477300a05
 image/png	background.js	/^      await navigator.clipboard.write([new ClipboardItem({ "image\/png": blob })]);$/;"	p	variable:anonymousObject2ba477300705
 is	turndown.js	/^  function is (node, tagNames) {$/;"	f	class:TurndownService
 isBlank	turndown.js	/^  function isBlank (node) {$/;"	f	class:TurndownService
@@ -241,6 +253,7 @@ keep	turndown.js	/^    keep: function (filter) {$/;"	m	class:TurndownService
 keepReplacement	turndown.js	/^      keepReplacement: function (content, node) {$/;"	m	variable:TurndownService.TurndownService.defaults
 linkReferenceStyle	turndown.js	/^      linkReferenceStyle: 'full',$/;"	p	variable:TurndownService.TurndownService.defaults
 linkStyle	turndown.js	/^      linkStyle: 'inlined',$/;"	p	variable:TurndownService.TurndownService.defaults
+mac	manifest.json	/^        "mac": "MacCtrl+Shift+H"$/;"	s	object:commands.clipmd-html.suggested_key
 mac	manifest.json	/^        "mac": "MacCtrl+Shift+M"$/;"	s	object:commands._execute_action.suggested_key
 mac	manifest.json	/^        "mac": "MacCtrl+Shift+S"$/;"	s	object:commands.clipmd-screenshot.suggested_key
 manifest_version	manifest.json	/^  "manifest_version": 3,$/;"	n
@@ -306,7 +319,7 @@ rules.referenceLink	turndown.js	/^  rules.referenceLink = {$/;"	p
 rules.strong	turndown.js	/^  rules.strong = {$/;"	p
 run	background.js	/^const run = async (mode, tab) => {$/;"	f
 save_manifest	scripts/build.py	/^def save_manifest(v):$/;"	f
-scale	background.js	/^        scale: 1$/;"	p	variable:handleNode.clip
+scale	background.js	/^    scale: 1$/;"	p	variable:captureScreenshot.clip
 send	background.js	/^const send = (debuggee, method, params = {}) =>$/;"	f
 sendToOffscreen	background.js	/^const sendToOffscreen = msg =>$/;"	f
 service_worker	manifest.json	/^    "service_worker": "background.js"$/;"	s	object:background
@@ -318,24 +331,30 @@ stage	scripts/build.py	/^def stage():$/;"	f
 startSession	background.js	/^const startSession = async (tabId, mode) => {$/;"	f
 strongDelimiter	turndown.js	/^      strongDelimiter: '**',$/;"	p	variable:TurndownService.TurndownService.defaults
 suggested_key	manifest.json	/^      "suggested_key": {$/;"	o	object:commands._execute_action
+suggested_key	manifest.json	/^      "suggested_key": {$/;"	o	object:commands.clipmd-html
 suggested_key	manifest.json	/^      "suggested_key": {$/;"	o	object:commands.clipmd-screenshot
 tabId	background.js	/^    target: { tabId },$/;"	p	property:anonymousObject2ba477300505.target
 tabId	background.js	/^    target: { tabId },$/;"	p	property:anonymousObject2ba477300605.target
+tabId	background.js	/^    target: { tabId },$/;"	p	property:anonymousObject2ba477300805.target
 tabId	background.js	/^  const debuggee = { tabId };$/;"	p	variable:startSession.debuggee
 target	background.js	/^    target: { tabId },$/;"	p	variable:anonymousObject2ba477300505
 target	background.js	/^    target: { tabId },$/;"	p	variable:anonymousObject2ba477300605
+target	background.js	/^    target: { tabId },$/;"	p	variable:anonymousObject2ba477300805
 td	offscreen.js	/^const td = new TurndownService({ codeBlockStyle: "fenced" });$/;"	C
+text/html	background.js	/^        "text\/html": htmlBlob,$/;"	p	variable:anonymousObject2ba477300a05
 trimLeadingNewlines	turndown.js	/^  function trimLeadingNewlines (string) {$/;"	f	class:TurndownService
 trimNewlines	turndown.js	/^  function trimNewlines (string) {$/;"	f	class:TurndownService
 trimTrailingNewlines	turndown.js	/^  function trimTrailingNewlines (string) {$/;"	f	class:TurndownService
 turndown	turndown.js	/^    turndown: function (input) {$/;"	m	class:TurndownService
-type	background.js	/^      const res = await sendToOffscreen({ type: "convertMarkdown", html: outerHTML });$/;"	p	variable:handleNode.anonymousObject2ba477300905
+type	background.js	/^      const htmlBlob = new Blob([htmlContent], { type: "text\/html" });$/;"	p	variable:anonymousObject2ba477300805.func.anonymousObject2ba477300905
+type	background.js	/^      const res = await sendToOffscreen({ type: "convertMarkdown", html: outerHTML });$/;"	p	variable:handleNode.anonymousObject2ba477300e05
 url	background.js	/^      url: OFFSCREEN_URL,$/;"	p	variable:anonymousObject2ba477300105
 use	turndown.js	/^    use: function (plugin) {$/;"	m	class:TurndownService
 version	manifest.json	/^  "version": "1.1.5",$/;"	s
-width	background.js	/^        width: Math.max(...xs) - Math.min(...xs),$/;"	p	variable:handleNode.clip
+width	background.js	/^    width: Math.max(...xs) - Math.min(...xs), height: Math.max(...ys) - Math.min(...ys),$/;"	p	variable:captureScreenshot.clip
+writeHtmlAndImageToTab	background.js	/^const writeHtmlAndImageToTab = async (tabId, html, imgData) => {$/;"	f
 writeImageToTab	background.js	/^const writeImageToTab = async (tabId, data) => {$/;"	f
 writeTextToTab	background.js	/^const writeTextToTab = async (tabId, text) => {$/;"	f
-x	background.js	/^        x: Math.min(...xs),$/;"	p	variable:handleNode.clip
-y	background.js	/^        y: Math.min(...ys),$/;"	p	variable:handleNode.clip
+x	background.js	/^    x: Math.min(...xs) + pageX, y: Math.min(...ys) + pageY,$/;"	p	variable:captureScreenshot.clip
+y	background.js	/^    x: Math.min(...xs) + pageX, y: Math.min(...ys) + pageY,$/;"	p	variable:captureScreenshot.clip
 zip_it	scripts/build.py	/^def zip_it(dst):$/;"	f
